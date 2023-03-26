@@ -20,8 +20,8 @@ public class User implements Serializable {
     private int id;
     private String email;
     private String pwd;
-    private String fname; //premon
-    private String iname; //nom
+    private String fname;
+    private String iname;
     @Enumerated(EnumType.STRING)
      Role role;
     @OneToMany
