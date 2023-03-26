@@ -11,10 +11,12 @@ import java.util.List;
 
 public interface IGestionEquipesServices {
     public User addUser(User user);
-    public Project addProject(Project project);
+    public Project addProjectNoCascade(Project project);
+    public Project addProjectCascade(Project project, List<Sprint> sprints);
     public void assignProjectToUser(int projectId, int userId);
     public void assignProjectToClient(int projectId, String firstName, String lastName);
-    public List<Project> getAllCurrentProject() ;
+    public List<Project> getAllCurrentProject1() ;
+    public List<Project> getAllCurrentProjectJPQL();
     public List<Project> getProjectsByScrumMaster(String fName, String lName);
 
     public void addSprintAndAssignToProject(Sprint sprint, int idProject);

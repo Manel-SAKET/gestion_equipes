@@ -20,10 +20,10 @@ public class User implements Serializable {
     private int id;
     private String email;
     private String pwd;
-    private String fname;
-    private String iname;
+    private String fname; //premon
+    private String iname; //nom
     @Enumerated(EnumType.STRING)
-    private Role role;
+     Role role;
     @OneToMany
     List<Project> clt_projects;
     @ManyToMany(mappedBy = "intervenants")
