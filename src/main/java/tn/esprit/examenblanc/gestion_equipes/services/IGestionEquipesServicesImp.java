@@ -1,6 +1,7 @@
 package tn.esprit.examenblanc.gestion_equipes.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.examenblanc.gestion_equipes.entities.Project;
 import tn.esprit.examenblanc.gestion_equipes.entities.Sprint;
@@ -16,6 +17,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class IGestionEquipesServicesImp implements IGestionEquipesServices {
     private final ProjectRepository projectRepository;
@@ -91,6 +93,7 @@ public class IGestionEquipesServicesImp implements IGestionEquipesServices {
     }
 
     @Override
+    @Transactional
     public void addSprintAndAssignToProject(Sprint sprint, int idProject) {
     sprintRepository.saveAndFlush(sprint);
     Project p = projectRepository.findById(idProject).orElse(null);
@@ -100,7 +103,10 @@ public class IGestionEquipesServicesImp implements IGestionEquipesServices {
     }
 
     @Override
-    public List<Project> getNbrSprintByCurrentProject() {
-        return null;
+    public void getNbrSprintByCurrentProject() {
+        List<Project> projets = this.getAllCurrentProjectJPQL();
+        for (Project p:projets) {
+            log.info(String.valueOf(p.getSprints().size()));
+        }
     }
 }

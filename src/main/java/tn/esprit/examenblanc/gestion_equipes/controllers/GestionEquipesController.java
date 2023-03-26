@@ -1,10 +1,8 @@
 package tn.esprit.examenblanc.gestion_equipes.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.*;
 import tn.esprit.examenblanc.gestion_equipes.entities.User;
 import tn.esprit.examenblanc.gestion_equipes.services.IGestionEquipesServices;
 
@@ -17,6 +15,12 @@ public class GestionEquipesController {
     @PostMapping("adduser")
     private User addUser(@RequestBody User u){
         return gestionEquipesServices.addUser(u);
+    }
+
+    @Scheduled(fixedRate = 30000)
+    @GetMapping
+    public void getNbrSprintByCurrentProject(){
+        gestionEquipesServices.getNbrSprintByCurrentProject();
     }
 
 }

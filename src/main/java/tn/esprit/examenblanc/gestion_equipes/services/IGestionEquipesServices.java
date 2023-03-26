@@ -20,6 +20,6 @@ public interface IGestionEquipesServices {
     public List<Project> getProjectsByScrumMaster(String fName, String lName);
 
     public void addSprintAndAssignToProject(Sprint sprint, int idProject);
-    public List<Project> getNbrSprintByCurrentProject();
+    public void getNbrSprintByCurrentProject();
 
 }
